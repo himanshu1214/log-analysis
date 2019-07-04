@@ -1,0 +1,22 @@
+vagrant@vagrant:/vagrant$ python temp.py
+Poular Articles:
+     Views                   Articles
+0   85392              so-many-bears
+1   85387       balloon-goons-doomed
+2   85775          goats-eat-googles
+3  256365         bears-love-berries
+4  342102          candidate-is-jerk
+5   85679       trouble-for-troubled
+6   85273  media-obsessed-with-bears
+7  171762            bad-things-gone
+ ,
+Popular Authors:
+                    Author   Views
+0   Anonymous Contributor  171762
+1          Markoff Chaney   85387
+2  Rudolf von Treppenwitz  427781
+3         Ursula La Multa  512805,
+ Date with more than onePercenterror:
+
+                    %error  date
+0  2.26268624680272595600  17.0
