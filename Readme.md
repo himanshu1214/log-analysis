@@ -13,27 +13,34 @@ News database had three tables:
 Further we created  different views to acheive our goals of this project:
 FIRSTLY THESE VIEWS CAN BE CREATED in the following sequence:
 
-# VIEW1: aut_art view --->> CREATE OR REPLACE VIEW aut_art AS SELECT A.slug, A.author, \
+# VIEW1:
+aut_art view --->> CREATE OR REPLACE VIEW aut_art AS SELECT A.slug, A.author, \
 B.name FROM articles AS A, authors AS B WHERE A.author = B.id;
 
-# VIEW2: date_tab view -->> CREATE OR REPLACE VIEW date_tab AS SELECT \
+# VIEW2:
+date_tab view -->> CREATE OR REPLACE VIEW date_tab AS SELECT \
 to_char(time, 'yyyy/mm/dd') date_part, status FROM log;
-# VIEW3: view_group_query -->> CREATE OR REPLACE VIEW group_tab AS SELECT \
+# VIEW3:
+view_group_query -->> CREATE OR REPLACE VIEW group_tab AS SELECT \
 count(*) as num, date_part, status FROM date_tab group by date_part, status;
-# VIEW4: view_percent_error_tab -->> CREATE OR REPLACE VIEW error_tab AS SELECT \
+# VIEW4:
+view_percent_error_tab -->> CREATE OR REPLACE VIEW error_tab AS SELECT \
 A.num/B.sum*100 error, A.date_part FROM (SELECT num, date_part FROM \group_tab \
 WHERE status='404 NOT FOUND' order by date_part ASC) A, (SELECT sum(num), \
 date_part FROM group_tab group by date_part order by date_part) B WHERE \
 A.date_part=B.date_part order by error DESC;
 
 Below is the sequence to steps taken to utilize these VIEWS and get the results:
-# RESULT1: GET POPULAR Articles:
+# RESULT1:
+GET POPULAR Articles
 For acheiving we used select and join between log and articles and get the top articles and Views
-# RESULT2: GET POPULAR authors
+# RESULT2:
+GET POPULAR authors
 For acheiving this result we created VIEW 1 as mentioned earlier.
 Then we joined aut_art view table and log table and further queried to get the top authors and views.
 
-# RESULT3: GET date with more than 1% errors
+# RESULT3:
+GET date with more than 1% errors
 For acheiving the results we made multiple views such as date_tab, view_group_query, view_percent_error_tab
 Then we select the date and error from the view_percent_error_tab where error is more than 1%.
 
@@ -48,7 +55,7 @@ Either way, you will end up with a new directory containing the VM files. Change
 From your terminal, inside the vagrant subdirectory, run the command vagrant up. This will cause Vagrant to download the Linux operating system and install it. This may take quite a while (many minutes) depending on how fast your Internet connection is.
 When vagrant up is finished running, you will get your shell prompt back. At this point, you can run vagrant ssh to log in to your newly installed Linux VM!
 
-## Running PostGres:
+## Running PostgreSQL:
 Inside the VM, change directory to /vagrant and look around with ls.
 The files you see here are the same as the ones in the vagrant subdirectory on your computer (where you started Vagrant from). Any file you create in one will be automatically shared to the other. This means that you can edit code in your favorite text editor, and run it inside the VM.
 Files in the VM's /vagrant directory are shared with the vagrant folder on your computer. But other data inside the VM is not. For instance, the PostgreSQL database itself lives only inside the VM.
