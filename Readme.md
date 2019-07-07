@@ -97,7 +97,7 @@ The database that you're working with in this project is running PostgreSQL. In 
 db = psycopg2.connect("dbname=news")
 
 # RUN MODULE:
-1. Module can be run on terminal using python temp.py and it will print the values of three questions in a form of Dataframe on terminal.
+1. Module can be run on terminal using python main.py and it will print the values of three questions in a form of Dataframe on terminal.
 
 # ISSUES:
 The news dataset used for this module is cleaned. No issues were encountered while implementing this module.
